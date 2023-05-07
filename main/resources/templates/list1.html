@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+你好小子
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>username</th>
+        <th>userpassword</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="user:${UserList}">
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getUsername()}"></td>
+        <td th:text="${user.getPassword()}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

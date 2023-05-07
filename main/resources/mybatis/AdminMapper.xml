@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootmybatis.mapper.AdminMapper">
+    <select id="queryAdminByNP" resultType="admin">
+        select * from day14.admin where admin.adminname=#{adminname} and admin.adminpwd=#{adminpwd}
+    </select>
+
+    <insert id="addAdmin" parameterType="admin">
+        insert into day14.admin (adminname,adminpwd) values (#{adminname},#{adminpwd})
+    </insert>
+
+<!--    <insert id="addUser" parameterType="user">-->
+<!--        insert into day14.user (username,password,comment) values (#{username},#{password},'')-->
+<!--    </insert>-->
+</mapper>

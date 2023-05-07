@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>委托列表</title>
+  <!-- bootstrap css -->
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+  <!-- custom css -->
+  <link rel="stylesheet" th:href="@{/css/custom.css}"/>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>委托列表</h1>
+      <form class="form-inline mb-4" th:action="@{/search}" method="get">
+        <input class="form-control mr-sm-2" type="text" placeholder="搜索委托" name="keyword">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+      </form>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>委托人</th>
+          <th>委托任务</th>
+          <th>评论区</th>
+          <th>状态</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="entrustment : ${entrustmentList}">
+          <td th:text="${entrustment.eid}"></td>
+          <td th:text="${entrustment.username}"></td>
+          <td th:text="${entrustment.entrustment}"></td>
+          <td th:text="${entrustment.comment}" style="white-space: pre-line;"></td>
+          <td th:text="${entrustment.cond}" style="color: #ff0000; font-weight: bold;"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- bootstrap js -->
+<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
