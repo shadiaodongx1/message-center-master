@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootmybatis.mapper.EntrustmentMapper">
+
+    <insert id="addEntrustment" parameterType="entrustment">
+       insert into day14.entrustment (username,entrustment,cond) values (#{username},#{entrustment},#{cond})
+
+    </insert>
+
+    <select id="queryEntrustmentList" resultType="entrustment">
+        select * from day14.entrustment
+    </select>
+
+    <select id="queryentrustmentByName" resultType="entrustment">
+        select * from day14.entrustment where entrustment.username = #{username}
+    </select>
+
+    <select id="queryentrustmentByEid" resultType="entrustment">
+        select * from day14.entrustment where entrustment.eid = #{eid}
+    </select>
+
+    <update id="updateComment">
+        update day14.entrustment set entrustment.comment=#{comment} where eid=#{eid}
+    </update>
+
+    <update id="updateCond1">
+        update day14.entrustment set entrustment.cond='已被接受' where eid=#{eid}
+    </update>
+
+    <select id="findByEntrustmentContaining" resultType="entrustment">
+        SELECT * FROM day14.entrustment WHERE entrustment.entrustment LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+
+    <select id="findByStatus" resultType="entrustment">
+        SELECT * FROM day14.entrustment WHERE entrustment.cond = #{status}
+    </select>
+
+    <select id="findByStatusAndEntrustmentContaining" resultType="entrustment">
+        SELECT * FROM day14.entrustment
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND entrustment.entrustment LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="status != null and status != ''">
+                AND entrustment.cond = #{status}
+            </if>
+        </where>
+    </select>
+</mapper>
