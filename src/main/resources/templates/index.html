@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>Signin Template for Bootstrap</title>
+		<!-- Bootstrap core CSS -->
+		<link href="asserts/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Custom styles for this template -->
+		<link href="asserts/css/signin.css" rel="stylesheet">
+	</head>
+
+	<body class="text-center">
+		<form class="form-signin" th:action="@{/login}" >
+			<img class="mb-4" src="asserts/img/bootstrap-solid.svg" alt="" width="72" height="72">
+			<h1 class="h3 mb-3 font-weight-normal">请登录</h1>
+
+			<!--			登陆错误的提醒-->
+			<p style="color: red" th:text="${loginerror}" th:if="${not #strings.isEmpty(loginerror)}"></p>
+<!--			没有登陆的提醒-->
+
+
+
+			<label class="sr-only">Username</label>
+			<input type="text" name="username" class="form-control" placeholder="Username" required="" autofocus="">
+			<p></p>
+			<label class="sr-only">Password</label>
+
+			<input type="password" name="password" class="form-control" placeholder="Password" required="">
+
+<!--			<input type="text" name="password" class="form-control" placeholder="Password" required="">-->
+			<p></p>
+			<label class="sr-only">验证码</label>
+			<input type="text" name="vrifyCode" class="form-control" placeholder="验证码（点击图片刷新）">
+			<div class="checkbox mb-3">
+<!--				<label>-->
+<!--          <input type="checkbox" value="remember-me"> Remember me-->
+<!--        </label>-->
+			</div>
+
+
+			<!--/*@thymesVar id="info" type=""*/-->
+			<h1 th:text="${info}" />
+			<div>
+				<img alt="验证码" onclick = "this.src='/defaultKaptcha?d='+new Date()*1" src="/defaultKaptcha" />
+			</div>
+<!--			<label class="sr-only">验证码</label>-->
+			<p></p>
+<!--			<form action="/login/imgvrifyControllerDefaultKaptcha">-->
+<!--				<input type="text" name="vrifyCode" class="form-control" placeholder="验证码（点击图片刷新）">-->
+<!--&lt;!&ndash;			</form>&ndash;&gt;-->
+
+				<p></p>
+			<button class="btn btn-lg btn-primary btn-block" type="submit" >登录</button>
+
+				<p></p>
+				<p><a href="register.html"><button class="btn btn-lg btn-primary btn-block" type="button" >注册</button></a></p>
+				<p><a href="forgetpwd.html"><button class="btn btn-lg btn-primary btn-block" type="button" >忘记密码/找回密码</button></a></p>
+			<p class="mt-5 mb-3 text-muted">© 2022-2023</p>
+			<a class="btn btn-sm">中文</a>
+			<a class="btn btn-sm">English</a>
+
+
+		</form>
+
+	</body>
+
+</html>

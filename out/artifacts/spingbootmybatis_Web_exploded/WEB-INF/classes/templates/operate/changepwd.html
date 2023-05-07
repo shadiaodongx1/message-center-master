@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Signin Template for Bootstrap</title>
+  <!-- Bootstrap core CSS -->
+  <link href="asserts/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="asserts/css/signin.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+<form class="form-signin" th:action="@{/tochangepwd}">
+  <img class="mb-4" src="asserts/img/bootstrap-solid.svg" alt="" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal">修改密码</h1>
+
+  <!--    			设置消息回显 msg不为空才回显-->
+  <p style="color: red" th:text="${chpwdmsg}" th:if="${not #strings.isEmpty(chpwdmsg)}"></p>
+
+
+  <label class="sr-only">Username</label>
+  <input type="text" name="username" class="form-control" placeholder="请输入用户名" required="" autofocus="">
+  <p></p>
+  <label class="sr-only">Password</label>
+<!--  <input type="password" name="password" class="form-control" placeholder="请输入旧密码" required="">-->
+  <input type="text" name="password" class="form-control" placeholder="请输入旧密码" required="">
+  <label class="sr-only">Password1</label>
+<!--  <input type="password" name="password1" class="form-control" placeholder="请输入新密码" required="">-->
+  <input type="text" name="password1" class="form-control" placeholder="请输入新密码" required="">
+  <label class="sr-only">Password1</label>
+<!--  <input type="password" name="password2" class="form-control" placeholder="确认新密码" required="">-->
+  <input type="text" name="password2" class="form-control" placeholder="确认新密码" required="">
+  <button class="btn btn-lg btn-primary btn-block" type="submit">提交</button>
+  <p></p>
+  <p><a href="/index.html"><button class="btn btn-lg btn-primary btn-block" type="button">返回登陆页</button></a></p>
+<!--  <p><button class="btn btn-lg btn-primary btn-block" type="button">返回登陆页</button></a></p>-->
+  <p class="mt-5 mb-3 text-muted">© 2022-2023</p>
+  <a class="btn btn-sm">中文</a>
+  <a class="btn btn-sm">English</a>
+</form>
+
+</body>
+
+</html>

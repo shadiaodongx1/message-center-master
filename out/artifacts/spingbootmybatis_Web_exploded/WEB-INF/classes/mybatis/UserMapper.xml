@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootmybatis.mapper.UserMapper">
+
+
+    <select id="queryUserList" resultType="user">
+          select * from day14.user
+    </select>
+
+
+
+    <select id="queryUserById" resultType="user">
+        select * from day14.user where id = #{id}
+    </select>
+
+    <select id="queryUserByName" resultType="user">
+        select * from day14.user where user.username = #{username}
+    </select>
+
+    <select id="queryCodeByName" resultType="string">
+        select emailcode from day14.user where username = #{username}
+    </select>
+
+    <select id="queryUserByEc" resultType="user">
+        select * from day14.user where user.emailcode = #{emailcode}
+    </select>
+
+<!--    user queryUserByName(String username);-->
+
+<!--    user queryUserByPwd(String password);-->
+
+    <select id="queryUserByNP" resultType="user">
+        select * from day14.user where user.username = #{username} and user.password = #{password}
+    </select>
+
+    <select id="queryUserByNE" resultType="user">
+        select * from day14.user where user.username = #{username} and user.email = #{email}
+    </select>
+
+    <update id="updateMessage">
+        update day14.user set user.message=#{message} where username=#{username}
+    </update>
+
+    <update id="updatePassword">
+        update day14.user set user.password=#{password} where username=#{username}
+    </update>
+
+    <update id="updateEmailcode">
+        update day14.user set user.emailcode=#{emailcode} where username=#{username}
+    </update>
+
+    <update id="updateComment">
+        update day14.user set user.comment=#{comment} where user.id=#{id}
+    </update>
+<!--    <select id="queryUserByPwd" resultType="user">-->
+<!--        select * from day14.user where user.password = #{password}-->
+<!--    </select>-->
+
+    <insert id="addUser1">
+        insert into day14.user(username,password) values (#{username},#{password})
+    </insert>
+
+    <update id="updateMail">
+        update day14.user set user.email=#{email} where username=#{username}
+    </update>
+
+    <insert id="addUser" parameterType="user">
+        insert into day14.user (username,password,comment,email) values (#{username},#{password},'','')
+    </insert>
+
+    <update id="deleteComMes">
+        update day14.user set user.message=null,user.comment='' where user.id=#{id}
+    </update>
+<!--    <update id="updateUser" parameterType="user">-->
+<!--        update day14.user set username=#{username},password=#{password} where id = #{id}-->
+<!--    </update>-->
+
+    <delete id="deleteUser" parameterType="int">
+        delete from day14.user where id = #{id}
+    </delete>
+</mapper>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<script >
+
+
+    function tianjia() {
+        axios({
+            url:"http://localhost:3000/users",
+            method:"post",
+            data:{
+                id:2,
+                username:"pppp",
+                pwd:"1111"
+            }
+        }).then(function (response) {
+            console.log(response);
+        }).catch(function (errr){
+            console.error();
+        })
+    }
+
+    function update() {
+        axios({
+            url:"http://localhost:3000/users/2",
+            method:"put",
+            data:{
+                id:5,
+                username:"aaaa",
+                pwd:"qwe"
+            }
+        })
+
+    }
+
+    function select(){
+
+        axios.get("http://localhost:3000/users").then(aes=>{
+            console.log('结果为：',aes.data)
+        })
+
+    }
+
+
+    axios.delete('http://localhost:3000/users/3').then(res=>{
+        console.log('删除任务成功',res.data)
+    });
+</script>
+
+<body>
+<button onclick="tianjia()">添加</button>
+<button onclick="update()">更新</button>
+<button onclick="select()">查询</button>
+</body>
+</html>

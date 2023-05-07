@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="hibernate-validator-8.0.0.Alpha3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../浏览器下载/hibernate-validator-8.0.0.Alpha3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="jar://$PROJECT_DIR$/../../浏览器下载/hibernate-validator-8.0.0.Alpha3.jar!/" recursive="false" />
+  </library>
+</component>

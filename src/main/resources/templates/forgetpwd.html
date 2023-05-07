@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Signin Template for Bootstrap</title>
+  <!-- Bootstrap core CSS -->
+  <link href="asserts/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="asserts/css/signin.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+<form class="form-signin" th:action="@{/toforgetpwd}" >
+  <img class="mb-4" src="asserts/img/bootstrap-solid.svg" alt="" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal">忘记密码</h1>
+
+  <p style="color: red" th:text="${forgetpwdmsg}" th:if="${not #strings.isEmpty(forgetpwdmsg)}"></p>
+
+  <p></p>
+  <label class="sr-only">Username</label>
+  <input type="text" name="username" class="form-control" placeholder="请输入用户名" required="" >
+  <p></p>
+
+
+  <p></p>
+  <label class="sr-only">Email</label>
+  <input type="text" name="email" class="form-control" placeholder="请输入用户绑定的邮箱" required="" >
+  <p></p>
+
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit" >点击获取验证码</button>
+</form>
+
+
+
+</form>
+
+</body>
+
+</html>
