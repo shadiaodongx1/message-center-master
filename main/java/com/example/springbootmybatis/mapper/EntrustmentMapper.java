@@ -25,4 +25,9 @@ public interface EntrustmentMapper {
      int updateCond1(int eid);
 
      List<entrustment> findByEntrustmentContaining(String keyword);
+
+     List<entrustment> findByStatus(String status);
+
+     List<entrustment> findByStatusAndEntrustmentContaining(String keyword,String status);
+
 }

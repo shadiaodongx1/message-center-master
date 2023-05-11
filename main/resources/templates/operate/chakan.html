@@ -54,6 +54,19 @@
             display: none;
         }
     </style>
+<!--    <style>-->
+<!--        .form-group.row.align-items-center > div {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--        }-->
+<!--        .form-group.row.align-items-center > div:first-child {-->
+<!--            margin-right: 10px;-->
+<!--        }-->
+<!--        .form-group.row.align-items-center > div:last-child {-->
+<!--            margin-left: 10px;-->
+<!--        }-->
+
+<!--    </style>-->
 </head>
 
 <body>
@@ -153,8 +166,8 @@
                             Current month
                         </a>
                     </li>
-
-            </div>
+                </ul>
+             </div>
         </nav>
 
 
@@ -169,10 +182,70 @@
                 <table class="table table-striped table-sm">
                     <thead>
                     <tr>
-                        <form class="form-inline my-2 my-lg-0" th:action="@{/jumptochakanliuyan}" method="post">
-                            <input class="form-control mr-sm-2" type="search" placeholder="请输入任务关键字" aria-label="Search" name="keyword">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+
+<!--                        <form id="myform" class="form-inline my-2 my-lg-0" th:action="@{/jumptochakanliuyan}" method="post">-->
+<!--                            <div class="form-group row align-items-center">-->
+<!--                                <div class="col-md-5">-->
+<!--                                    <input class="form-control" type="search" placeholder="请输入任务关键字" aria-label="Search" name="keyword" style="width:200px;" th:field="${keyword}">-->
+<!--                                </div>-->
+<!--                                <div class="col-md-4">-->
+<!--                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-left: -4px; margin-right: 10px;">搜索</button>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-3">-->
+<!--                                    <select class="form-control" name="status" style="width:110px;" onchange="submitForm()">-->
+<!--                                        <option value="">全部</option>-->
+<!--                                        <option value="已完成" th:selected="${status == '已完成'}">已完成</option>-->
+<!--                                        <option value="已被接受" th:selected="${status == '已被接受'}">已被接受</option>-->
+<!--                                        <option value="未被接受" th:selected="${status == '未被接受'}">未被接受</option>-->
+<!--                                    </select>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </form>-->
+
+                        <form class="form-inline my-2 my-lg-0" th:action="@{/jumptochakanliuyan}" method="post" autocomplete="off">
+                            <div class="form-group row align-items-center">
+                                <div class="col-md-5">
+                                    <input class="form-control" type="search" placeholder="请输入任务关键字" aria-label="Search" name="keyword" style="width:200px;" value="" id="keyword">
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-left: -4px; margin-right: 10px;">搜索</button>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-control" name="status" style="width:110px;" onchange="this.form.submit()" id="status">
+                                        <option value="" selected>全部</option>
+                                        <option value="已完成">已完成</option>
+                                        <option value="已被接受">已被接受</option>
+                                        <option value="未被接受">未被接受</option>
+                                    </select>
+                                </div>
+                            </div>
                         </form>
+
+                        <script>
+                            // 在页面加载时，将搜索框和下拉框中的值加载回来
+                            window.onload = function() {
+                                var keyword = localStorage.getItem('keyword');
+                                if (keyword !== null) {
+                                    document.getElementById('keyword').value = keyword;
+                                }
+
+                                var status = localStorage.getItem('status');
+                                if (status !== null) {
+                                    document.getElementById('status').value = status;
+                                }
+                            };
+
+                            // 在搜索框的值发生变化时，将新的值存储到localStorage中
+                            document.getElementById('keyword').addEventListener('change', function() {
+                                localStorage.setItem('keyword', this.value);
+                                document.getElementById('status').value = ''; // 设置下拉框为“全部”
+                            });
+
+                            // 在下拉框的值发生变化时，将新的值存储到localStorage中
+                            document.getElementById('status').addEventListener('change', function() {
+                                localStorage.setItem('status', this.value);
+                            });
+                        </script>
 
 
                     </tr>
@@ -196,6 +269,8 @@
                         <td>
                             <a class="btn btn-sm btn-primary" th:href="@{/jumptocomment(eid=${entrustment.getEid()})}">评论</a>
                             <button th:if="${entrustment.cond == '未被接受'}" class="btn btn-sm btn-warning" th:onclick="'javascript:acceptEntrustment(' + ${entrustment.eid} + ')'" >接受</button>
+                            <a class="btn btn-sm btn-primary" th:href="@{/jumptochat(receiver=${entrustment.getUsername()})}">聊一聊</a>
+
                         </td>
 
                         <script>
@@ -206,20 +281,6 @@
                             }
                         </script>
 
-
-                        <!--                        <td>-->
-                        <!--                            <a class="btn btn-sm btn-primary" th:href="@{/jumptocomment(eid=${entrustment.getEid()})}">评论</a>-->
-                        <!--                            <a class="btn btn-sm btn-warning" th:href="@{/jumptoacceptcommission(eid=${entrustment.getEid()})}">接受</a>-->
-                        <!--                            <div class="popup" id="myPopup" >-->
-                        <!--                                <p>您确定接受该委托吗？</p>-->
-                        <!--                                <a class="btn btn-sm btn-success" th:href="@{/jumptoacceptcommission(eid=${entrustment.getEid()})}">确定</a>-->
-                        <!--                            </div>-->
-                        <!--                        </td>-->
-                        <!--                        <script>-->
-                        <!--                            function openPopup() {-->
-                        <!--                                document.getElementById("myPopup").style.display = "block";-->
-                        <!--                            }-->
-                        <!--                        </script>-->
 
                     </tr>
                     </tbody>

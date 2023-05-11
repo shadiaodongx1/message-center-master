@@ -14,21 +14,15 @@
 
 <body class="text-center">
 <form class="form-signin" th:action="@{/comment}">
-    <!--    <img class="mb-4" src="asserts/img/bootstrap-solid.svg" alt="" width="72" height="72">-->
+
     <h1 class="h3 mb-3 font-weight-normal">请输入你的评价</h1>
 
-    <!--        			设置消息回显 msg不为空才回显-->
-    <!--    <p style="color: red" th:text="${registermsg}" th:if="${not #strings.isEmpty(registermsg)}"></p>-->
-
-
-    <!--    <label class="sr-only"></label>-->
     <input type="hidden" name="eid" th:value="${entrustment.getEid()}">
     <textarea name="comment" rows="10" cols="25"></textarea>
     <p></p>
     <button class="btn btn-lg btn-primary btn-block" type="submit">提交你的评价</button>
     <p class="mt-5 mb-3 text-muted">© 2022-2023</p>
-    <!--    <a class="btn btn-sm">中文</a>-->
-    <!--    <a class="btn btn-sm">English</a>-->
+
 </form>
 
 </body>

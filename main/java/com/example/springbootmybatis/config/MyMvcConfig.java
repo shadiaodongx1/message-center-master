@@ -18,6 +18,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/zhuye").setViewName("dashboard");
         registry.addViewController("/forgetpwd.html").setViewName("forgetpwd");
         registry.addViewController("/resetpwd.html").setViewName("resetpwd");
+        registry.addViewController("/chat.html").setViewName("chat");
 //        registry.addViewController("/index.html").setViewName("index");
 //        registry.addViewController("/main.html").setViewName("dashboard");
         //registry.addViewController("")
@@ -40,7 +41,8 @@ public class MyMvcConfig implements WebMvcConfigurer {
                 "/forgetpwd.html",
                 "/resetpwd.html",
                 "/toresetpwd",
-                "/toforgetpwd"
+                "/toforgetpwd",
+                "/chat.html"
         );
 
 //        registry.addInterceptor(new com.example.spingbootmybatis.config.PermissionHandlerIntercreptor()).addPathPatterns("/jumptouserlist");

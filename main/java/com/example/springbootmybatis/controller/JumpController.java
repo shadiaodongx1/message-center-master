@@ -111,6 +111,18 @@ public class JumpController {
         return "operate/comment";
     }
 
+    @RequestMapping("/jumptochat")
+    public String ToChat(@RequestParam("receiver") String receiver,Model model,HttpSession session){
+        String sender = (String) session.getAttribute("userwho");
+
+        System.out.println("发送方用户【" + sender +"】正在和接收方用户【" + receiver + "】聊天");
+        model.addAttribute("sender",sender);
+        model.addAttribute("receiver",receiver);
+        return "operate/chat";
+    }
+
+
+
     @RequestMapping("/jumptoacceptcommission")
     public String ToAcceptCommission(@RequestParam("eid") int eid,Model model){
         entrustment entrustment = entrustmentMapper.queryentrustmentByEid(eid);
@@ -121,20 +133,26 @@ public class JumpController {
         return "redirect:/jumptochakanliuyan";
     }
 
-    @PostMapping("/jumptochakanliuyan")
     @RequestMapping("/jumptochakanliuyan")
-    public String chakanfenye(@RequestParam("keyword") String keyword,ModelMap map,Model model){
+    @PostMapping("/jumptochakanliuyan")
+    public String chakanfenye(@RequestParam(value = "keyword", required = false) String keyword,
+                              @RequestParam(value = "status", required = false) String status,
+                              Model model){
 
-//        List<entrustment> entrustment = entrustmentMapper.queryEntrustmentList();
-        List<entrustment> entrustment = entrustmentMapper.findByEntrustmentContaining(keyword);
+        List<entrustment> entrustmentList = entrustmentMapper.findByStatusAndEntrustmentContaining(keyword, status);
 
-        model.addAttribute("EntrustmentList",entrustment);
+
+        model.addAttribute("EntrustmentList", entrustmentList);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("status", status);
+
         return "operate/chakan";
+    }
 
 
 
 
-//        @RequestParam(defaultValue = "1") int pageNum,
+    //        @RequestParam(defaultValue = "1") int pageNum,
 //        @RequestParam(defaultValue = "5") int pageSize,
 
 //        System.out.println(pageNum);
@@ -147,8 +165,6 @@ public class JumpController {
 //        PageInfo<user> userPageInfo = new PageInfo<>(users);
 //        model.addAttribute("pageInfo",userPageInfo);
 //        return "/operate/chakan";
-
-    }
 //    public String ToChaKanLiuYan(Model model){
 //        List<user> users = userMapper.queryUserList();
 //        System.out.println(users);
@@ -191,6 +207,8 @@ public class JumpController {
     public String jumptochangepwd(){
         return "operate/changepwd";
     }
+
+
 
     @ResponseBody
     @RequestMapping("/jiekou")
